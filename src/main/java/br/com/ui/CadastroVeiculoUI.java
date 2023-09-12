@@ -1,6 +1,7 @@
 package br.com.ui;
 
 import br.com.enums.TipoVeiculo;
+import br.com.list.ListaGlobal;
 import br.com.models.Veiculo;
 import br.com.util.ConsoleUI;
 
@@ -13,12 +14,11 @@ public class CadastroVeiculoUI extends BasicUI{
 
     @Override
     public void superiorTela() {
-        ConsoleUI coUI = new ConsoleUI();
-        coUI.adicionarTitulo("Cadastrar Veiculo");
+        ConsoleUI.adicionarTitulo("Cadastrar Veiculo");
         System.out.println("Placa > " + veiculo.getPlaca());
         System.out.println("Modelo > " + veiculo.getModelo());
         System.out.println("Tipo do veiculo > " + veiculo.getTipoVeiculo());
-        coUI.ln();
+        ConsoleUI.ln();
     }
 
     @Override
@@ -50,25 +50,25 @@ public class CadastroVeiculoUI extends BasicUI{
                     veiculo.setTipoVeiculo(TipoVeiculo.MEDIO);
                 } else if (tipoInt == 3){
                     veiculo.setTipoVeiculo(TipoVeiculo.SUV);
+                } else {
+                    System.out.println("Valor digitado inválido!");
                 }
                 break;
             }
             case 3: {
-                ConsoleUI.mensagemTemporizada("Cadastro salvo com sucesso!",5);
-                lista(veiculo);
-                break;
+                if (veiculo.getModelo() == null || veiculo.getPlaca() == null || veiculo.getTipoVeiculo() == null) {
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Ainda existem campos vazios", "Amarelo"),3);
+                    break;
+                } else {
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Cadastro salvo com sucesso!", "verde"),5);
+                    ListaGlobal.adicionarItem(veiculo);
+                    return false;
+                }
             }
             default: {
                 return false;
             }
         }
         return true;
-    }
-
-    protected void newItem() {
-        Veiculo newVeiculo = new Veiculo();
-        newVeiculo.setTipoVeiculo(TipoVeiculo.PEQUENO);
-        CadastroVeiculoUI ui = new CadastroVeiculoUI(newVeiculo);
-        ui.show();
     }
 }

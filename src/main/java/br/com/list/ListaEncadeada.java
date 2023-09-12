@@ -1,5 +1,7 @@
 package br.com.list;
 
+import br.com.util.ConsoleUI;
+
 public class ListaEncadeada {
         private Celula primeiro;
         private Celula ultimo;
@@ -29,7 +31,7 @@ public class ListaEncadeada {
 
         public void mostrarLista() {
             if (this.tamanho == 0) {
-                System.out.println("Lista vazia");
+                System.out.println(ConsoleUI.formatText("Nenhum cadastro adicionado!", "vermelho"));
                 return;
             }
 

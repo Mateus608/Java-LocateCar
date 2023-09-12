@@ -1,15 +1,34 @@
 package br.com.util;
 
-import br.com.enums.TipoVeiculo;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleUI {
 
+    public static final String ANSI_RESET = "\u001B[0m"; // Reseta a formatação
+    public static final String ANSI_RED = "\u001B[31m"; // Texto vermelho
+    public static final String ANSI_YELLOW = "\u001B[33m"; // Texto amarelo
+    public static final String ANSI_GREEN = "\u001B[32m"; // Texto verde
+    public static final String ANSI_BLUE = "\u001B[34m"; // Texto azul
+
+    public static String formatText(String text, String color) {
+        switch (color.toLowerCase()) {
+            case "vermelho":
+                return ANSI_RED + text + ANSI_RESET;
+            case "amarelo":
+                return ANSI_YELLOW + text + ANSI_RESET;
+            case "verde":
+                return ANSI_GREEN + text + ANSI_RESET;
+            case "azul":
+                return ANSI_BLUE + text + ANSI_RESET;
+            default:
+                return text;
+        }
+    }
+
     public static void adicionarTitulo(String titulo) {
         System.out.println("");
-        System.out.println(titulo.toUpperCase());
+        System.out.println(formatText(titulo.toUpperCase(), "azul"));
         System.out.println("");
     }
 
@@ -50,7 +69,7 @@ public class ConsoleUI {
         }
     }
 
-    public void ln() {
+    public static void ln() {
         System.out.println("");
     }
 }
