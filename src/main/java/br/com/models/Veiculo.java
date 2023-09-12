@@ -1,6 +1,7 @@
 package br.com.models;
 
 import br.com.enums.TipoVeiculo;
+import br.com.util.ConsoleUI;
 
 public class Veiculo {
 
@@ -26,11 +27,7 @@ public class Veiculo {
 
     @Override
     public String toString() {
-        return "Veiculo{" +
-                "placa='" + placa + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", tipoVeiculo=" + tipoVeiculo +
-                '}';
+        return "Placa: " + placa + " | Modelo: " + modelo + " | Tipo: " + tipoVeiculo;
     }
 
     public TipoVeiculo getTipoVeiculo() {
