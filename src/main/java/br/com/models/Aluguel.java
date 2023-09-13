@@ -17,6 +17,15 @@ public class Aluguel implements Pagamento {
         return placaVeiculo;
     }
 
+    @Override
+    public String toString() {
+        return "Data/Horário: " + dateTime +
+                "| Placa do Veiculo: " + placaVeiculo +
+                "| Cliente: " + documentoPessoa +
+                "| Valor: " + valorAluguel +
+                "| Movimentação: " + tipoMovimentacao;
+    }
+
     public void setPlacaVeiculo(String placaVeiculo) {
         this.placaVeiculo = placaVeiculo;
     }
