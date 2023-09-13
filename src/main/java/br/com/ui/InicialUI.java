@@ -1,7 +1,9 @@
 package br.com.ui;
 
 import br.com.enums.TipoVeiculo;
+import br.com.list.ListaAluguel;
 import br.com.list.ListaVeiculos;
+import br.com.models.Aluguel;
 import br.com.models.PessoaFisica;
 import br.com.models.PessoaJuridica;
 import br.com.models.Veiculo;
@@ -32,6 +34,7 @@ public class InicialUI extends BasicUI{
                 "Cadastrar Cliente [Pessoa Juridica]",
                 "Listar Clientes",
                 "Alugar Veiculo",
+                "Carros Alugados",
                 "Pesquisar",
                 "Sair");
         switch (option) {
@@ -65,10 +68,17 @@ public class InicialUI extends BasicUI{
                 break;
             }
             case 5: {
-                System.out.println("Você clicou");
+                Aluguel aluguel = new Aluguel();
+                AlugarVeiculoUI ui = new AlugarVeiculoUI(aluguel);
+                ui.show();
                 break;
             }
-            case 6: {
+            case 6 : {
+                ListaAluguelUI ui = new ListaAluguelUI();
+                ui.show();
+                break;
+            }
+            case 7: {
                 System.out.println("Você clicou");
                 break;
             }
