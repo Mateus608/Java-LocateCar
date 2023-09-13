@@ -40,14 +40,13 @@ public class AlterarPessoaJurUI extends BasicUI{
 
                     if (pessoa.validaTelefone(contato)) {
                         ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Só pode conter números no telefone", "vermelho"), 2);
-
                     }
 
                     if (!cnpj.equals(buscaCnpj)) {
                         if(!ListaPessoaJur.verificarCnpj(cnpj) && pessoa.validaPessoa(cnpj)) {
                             pessoa.editarPessoa(ListaPessoaJur.lista, nome, nomeFantasia, razaoSocial, endereco, contato, cnpj);
                         } else {
-                            ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CPF digitado é inválido ou já existe!", "vermelho"), 2);
+                            ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CNPJ digitado é inválido ou já existe!", "vermelho"), 2);
                         }
                     } else {
                         pessoa.editarPessoa(ListaPessoaJur.lista, nome, nomeFantasia, razaoSocial, endereco, contato, cnpj);

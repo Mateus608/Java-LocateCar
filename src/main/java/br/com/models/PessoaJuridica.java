@@ -79,10 +79,14 @@ public class PessoaJuridica extends Pessoa implements EditPessoaJuridica, Pesqui
 
     @Override
     public boolean validaTelefone(String telefone) {
-        boolean valido = true;
-        if (!telefone.substring(3).matches("[0-9]*")) {
-            valido = false;
+        telefone = telefone.replaceAll("\\s", "");
+
+        boolean valido = false;
+
+        if (!telefone.matches("\\d+")) {
+            valido = true;
         }
+
         return valido;
     }
 }

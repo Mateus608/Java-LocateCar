@@ -71,7 +71,7 @@ public class CadastroPessoaJurUI extends BasicUI{
                 if (!ListaPessoaFis.verificarCpf(cnpj) && pessoa.validaPessoa(cnpj)) {
                     pessoa.setCnpj(cnpj);
                 } else {
-                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CPF digitado é inválido ou já existe!", "vermelho"), 2);
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CNPJ digitado é inválido ou já existe!", "vermelho"), 2);
                 }
                 break;
             }

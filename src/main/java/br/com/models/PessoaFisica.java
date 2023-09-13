@@ -1,14 +1,12 @@
 package br.com.models;
 
-import br.com.interfaces.EditIdentificador;
 import br.com.interfaces.EditPessoaFisica;
 import br.com.interfaces.Pesquisar;
 import br.com.interfaces.ValidadorPessoa;
 import br.com.list.ListaEncadeada;
-import br.com.list.ListaPessoaFis;
 import br.com.util.ConsoleUI;
 
-public class PessoaFisica extends Pessoa implements EditPessoaFisica, Pesquisar<PessoaFisica>, EditIdentificador, ValidadorPessoa {
+public class PessoaFisica extends Pessoa implements EditPessoaFisica, Pesquisar<PessoaFisica>, ValidadorPessoa {
     String sobrenome;
     String cpf;
 
@@ -64,13 +62,6 @@ public class PessoaFisica extends Pessoa implements EditPessoaFisica, Pesquisar<
     }
 
     @Override
-    public void identificadorEdit(String identificador) {
-        if (true) {
-
-        }
-    }
-
-    @Override
     public boolean validaPessoa(String identificador) {
         boolean valido = true;
         if(identificador.length() != 11){
@@ -86,12 +77,10 @@ public class PessoaFisica extends Pessoa implements EditPessoaFisica, Pesquisar<
 
         boolean valido = false;
 
-        if (telefone.length() < 10) {
+        if (!telefone.matches("\\d+")) {
             valido = true;
         }
-        if (telefone.substring(telefone.length()).matches("[0-9]*")) {
-            valido = true;
-        }
+
         return valido;
     }
 }
