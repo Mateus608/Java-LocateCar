@@ -1,6 +1,6 @@
 package br.com.list;
 
-public class ListaPessoas {
+public class ListaPessoaFis {
     public static ListaEncadeada lista = new ListaEncadeada();
 
     public static ListaEncadeada getLista() {
@@ -16,6 +16,14 @@ public class ListaPessoas {
     }
     public static void excluirItemLista(String index) {
 
-        lista.excluirItem(index);
+        lista.excluirItem(index, 2);
+    }
+
+    public static boolean verificarCpf(String cpf) {
+        if (!lista.verificarItem(cpf, 2)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

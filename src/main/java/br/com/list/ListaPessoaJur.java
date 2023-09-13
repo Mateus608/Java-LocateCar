@@ -1,6 +1,6 @@
 package br.com.list;
 
-public class ListaVeiculos {
+public class ListaPessoaJur {
     public static ListaEncadeada lista = new ListaEncadeada();
 
     public static ListaEncadeada getLista() {
@@ -16,10 +16,11 @@ public class ListaVeiculos {
     }
     public static void excluirItemLista(String index) {
 
-        lista.excluirItem(index, 1);
+        lista.excluirItem(index, 3);
     }
-    public static boolean verificarPlaca(String placa) {
-        if (!lista.verificarItem(placa, 1)) {
+
+    public static boolean verificarCnpj(String cnpj) {
+        if (!lista.verificarItem(cnpj, 3)) {
             return false;
         } else {
             return true;
