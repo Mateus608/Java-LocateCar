@@ -33,8 +33,12 @@ public class CadastroVeiculoUI extends BasicUI{
         switch (option) {
             case 0: {
                 String placa = ConsoleUI.input("Informe a placa do veiculo");
-                veiculo.setPlaca(placa);
-                break;
+                    if (!ListaVeiculos.verificarPlaca(placa) && veiculo.validaPlaca(placa)) {
+                        veiculo.setPlaca(placa);
+                    } else {
+                        ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Placa digitada é inválida ou já existe!", "vermelho"), 2);
+                    }
+                    break;
             }
             case 1: {
                 String modelo = ConsoleUI.input("Informe o modelo do veiculo");
@@ -57,7 +61,7 @@ public class CadastroVeiculoUI extends BasicUI{
             }
             case 3: {
                 if (veiculo.getModelo() == null || veiculo.getPlaca() == null || veiculo.getTipoVeiculo() == null) {
-                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Ainda existem campos vazios", "Amarelo"),2);
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Ainda existem campos vazios", "amarelo"),2);
                     break;
                 } else {
                     ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Cadastro salvo com sucesso!", "verde"),3);

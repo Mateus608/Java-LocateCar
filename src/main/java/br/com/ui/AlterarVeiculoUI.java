@@ -15,6 +15,7 @@ public class AlterarVeiculoUI extends BasicUI{
     @Override
     public void superiorTela() {
         ConsoleUI.adicionarTitulo("Alterar Veiculo");
+        ListaVeiculos.mostrarLista();
         ConsoleUI.ln();
     }
 
@@ -27,9 +28,10 @@ public class AlterarVeiculoUI extends BasicUI{
                 "Voltar");
         switch (option) {
             case 0: {
-                String placa = ConsoleUI.input("Digite a placa do veiculo que deseja exluir");
-                if (veiculo.busca(ListaVeiculos.lista, placa)) {
+                String buscaPlaca = ConsoleUI.input("Digite a placa do veiculo que deseja editar");
+                if (veiculo.busca(ListaVeiculos.lista, buscaPlaca)) {
                     System.out.println(ConsoleUI.formatText("Veiculo encontrado... Prossiga com a edição", "amarelo"));
+                    String placa = ConsoleUI.input("Informe a nova placa");
                     String modelo = ConsoleUI.input("Informe o novo modelo");
                     String tipoStr = ConsoleUI.input("Informe o novo tipo do veiculo: 1 > PEQUENO, 2 > MEDIO, 3 > SUV");
                     int tipoInt = Integer.parseInt(tipoStr);
@@ -46,7 +48,16 @@ public class AlterarVeiculoUI extends BasicUI{
                     } else {
                         System.out.println("Valor digitado inválido!");
                     }
-                    veiculo.editarItem(ListaVeiculos.lista, placa, modelo, tipo);
+
+                    if (!placa.equals(buscaPlaca)) {
+                        if(!ListaVeiculos.verificarPlaca(placa) && veiculo.validaPlaca(placa)) {
+                            veiculo.editarItem(ListaVeiculos.lista, placa, modelo, tipo);
+                        } else {
+                            ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Placa digitada é inválida ou já existe!", "vermelho"), 2);
+                        }
+                    } else {
+                        veiculo.editarItem(ListaVeiculos.lista, placa, modelo, tipo);
+                    }
                     break;
                 } else {
                     System.out.println(ConsoleUI.formatText("Veículo não encontrado!", "vermelho"));
@@ -55,9 +66,9 @@ public class AlterarVeiculoUI extends BasicUI{
             }
             case 1: {
                 String index = ConsoleUI.input("Digite a placa do veículo que deseja excluir");
-
+                String identifcador = veiculo.getPlaca();
                 if (veiculo.busca(ListaVeiculos.lista, index)) {
-                    ListaVeiculos.lista.excluirItem(index);
+                    ListaVeiculos.lista.excluirItem(index, 1);
                     ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Veículo excluído com sucesso!", "verde"), 3);
                 } else {
                     System.out.println(ConsoleUI.formatText("Veículo não encontrado!", "vermelho"));

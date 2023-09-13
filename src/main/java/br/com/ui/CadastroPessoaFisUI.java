@@ -1,7 +1,6 @@
 package br.com.ui;
 
-import br.com.list.ListaPessoas;
-import br.com.list.ListaVeiculos;
+import br.com.list.ListaPessoaFis;
 import br.com.models.PessoaFisica;
 import br.com.util.ConsoleUI;
 
@@ -52,12 +51,20 @@ public class CadastroPessoaFisUI extends BasicUI{
             }
             case 3: {
                 String contato = ConsoleUI.input("Informe o telefone para contato");
-                pessoa.setContato(contato);
+                if (!pessoa.validaTelefone(contato)) {
+                    pessoa.setContato(contato);
+                } else {
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Só pode conter números no telefone", "vermelho"), 2);
+                }
                 break;
             }
             case 4: {
                 String cpf = ConsoleUI.input("Informe o CPF");
-                pessoa.setCpf(cpf);
+                if (!ListaPessoaFis.verificarCpf(cpf) && pessoa.validaPessoa(cpf)) {
+                    pessoa.setCpf(cpf);
+                } else {
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CPF digitado é inválido ou já existe!", "vermelho"), 2);
+                }
                 break;
             }
             case 5 : {
@@ -67,7 +74,7 @@ public class CadastroPessoaFisUI extends BasicUI{
                     break;
                 } else {
                     ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Cadastro salvo com sucesso!", "verde"),3);
-                    ListaPessoas.adicionarItem(pessoa);
+                    ListaPessoaFis.adicionarItem(pessoa);
                     return false;
                 }
             }

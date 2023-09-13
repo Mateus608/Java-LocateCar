@@ -3,10 +3,11 @@ package br.com.models;
 import br.com.enums.TipoVeiculo;
 import br.com.interfaces.EditVeiculo;
 import br.com.interfaces.Pesquisar;
+import br.com.interfaces.ValidadorVeiculo;
 import br.com.list.ListaEncadeada;
 import br.com.util.ConsoleUI;
 
-public class Veiculo implements EditVeiculo, Pesquisar<Veiculo> {
+public class Veiculo implements EditVeiculo, Pesquisar<Veiculo>, ValidadorVeiculo {
 
     private String placa;
     private String modelo;
@@ -42,9 +43,10 @@ public class Veiculo implements EditVeiculo, Pesquisar<Veiculo> {
     }
 
     @Override
-    public void editarItem(ListaEncadeada<Veiculo> lista, String placa, String novoModelo, TipoVeiculo novoTipoVeiculo) {
+    public void editarItem(ListaEncadeada<Veiculo> lista, String novaPlaca, String novoModelo, TipoVeiculo novoTipoVeiculo) {
         for (Veiculo veiculo : lista) {
-            if (placa.equals(veiculo.getPlaca())) {
+            if (true) {
+                veiculo.setPlaca(novaPlaca);
                 veiculo.setModelo(novoModelo);
                 veiculo.setTipoVeiculo(novoTipoVeiculo);
                 break;
@@ -64,4 +66,12 @@ public class Veiculo implements EditVeiculo, Pesquisar<Veiculo> {
         return false;
     }
 
+    @Override
+    public boolean validaPlaca(String placa) {
+        boolean valido = true;
+        if(placa.length() != 7){
+            valido = false;
+        }
+        return valido;
+    }
 }

@@ -2,10 +2,11 @@ package br.com.models;
 
 import br.com.interfaces.EditPessoaJuridica;
 import br.com.interfaces.Pesquisar;
+import br.com.interfaces.ValidadorPessoa;
 import br.com.list.ListaEncadeada;
 import br.com.util.ConsoleUI;
 
-public class PessoaJuridica extends Pessoa implements EditPessoaJuridica, Pesquisar<PessoaJuridica> {
+public class PessoaJuridica extends Pessoa implements EditPessoaJuridica, Pesquisar<PessoaJuridica>, ValidadorPessoa {
     String razaoSocial;
     String nomeFantasia;
     String cnpj;
@@ -53,7 +54,7 @@ public class PessoaJuridica extends Pessoa implements EditPessoaJuridica, Pesqui
     @Override
     public void editarPessoa(ListaEncadeada<PessoaJuridica> lista, String novoNome, String novoNomeFantasia, String novaRazaoSocial, String novoEndereco, String novoContato, String cnpj) {
         for (PessoaJuridica pessoa : lista) {
-            if (cnpj.equals(pessoa.getCnpj())) {
+            if (true) {
                 pessoa.setNome(novoNome);
                 pessoa.setNomeFantasia(novoNomeFantasia);
                 pessoa.setRazaoSocial(novaRazaoSocial);
@@ -65,5 +66,23 @@ public class PessoaJuridica extends Pessoa implements EditPessoaJuridica, Pesqui
                 System.out.println(ConsoleUI.formatText("Cliente não encontrado", "vermelho"));
             }
         }
+    }
+
+    @Override
+    public boolean validaPessoa(String identificador) {
+        boolean valido = true;
+        if(identificador.length() != 14){
+            valido = false;
+        }
+        return valido;
+    }
+
+    @Override
+    public boolean validaTelefone(String telefone) {
+        boolean valido = true;
+        if (!telefone.substring(3).matches("[0-9]*")) {
+            valido = false;
+        }
+        return valido;
     }
 }

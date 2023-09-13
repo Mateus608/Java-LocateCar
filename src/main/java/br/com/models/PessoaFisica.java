@@ -1,11 +1,14 @@
 package br.com.models;
 
+import br.com.interfaces.EditIdentificador;
 import br.com.interfaces.EditPessoaFisica;
 import br.com.interfaces.Pesquisar;
+import br.com.interfaces.ValidadorPessoa;
 import br.com.list.ListaEncadeada;
+import br.com.list.ListaPessoaFis;
 import br.com.util.ConsoleUI;
 
-public class PessoaFisica extends Pessoa implements EditPessoaFisica, Pesquisar<PessoaFisica> {
+public class PessoaFisica extends Pessoa implements EditPessoaFisica, Pesquisar<PessoaFisica>, EditIdentificador, ValidadorPessoa {
     String sobrenome;
     String cpf;
 
@@ -45,18 +48,50 @@ public class PessoaFisica extends Pessoa implements EditPessoaFisica, Pesquisar<
     }
 
     @Override
-    public void editarPessoa(ListaEncadeada<PessoaFisica> lista, String novoNome, String novoSobrenome, String novoEndereco, String novoContato, String Cpf) {
+    public void editarPessoa(ListaEncadeada<PessoaFisica> lista, String novoNome, String novoSobrenome, String novoEndereco, String novoContato, String novoCpf) {
         for (PessoaFisica pessoa : lista) {
-            if (cpf.equals(pessoa.getCpf())) {
+            if (true) {
                 pessoa.setNome(novoNome);
                 pessoa.setSobrenome(novoSobrenome);
                 pessoa.setEndereco(novoEndereco);
                 pessoa.setContato(novoContato);
-                pessoa.setCpf(cpf);
+                pessoa.setCpf(novoCpf);
                 break;
             } else {
                 System.out.println(ConsoleUI.formatText("Cliente não encontrado", "vermelho"));
             }
         }
+    }
+
+    @Override
+    public void identificadorEdit(String identificador) {
+        if (true) {
+
+        }
+    }
+
+    @Override
+    public boolean validaPessoa(String identificador) {
+        boolean valido = true;
+        if(identificador.length() != 11){
+            valido = false;
+        }
+        return valido;
+    }
+
+    @Override
+    public boolean validaTelefone(String telefone) {
+
+        telefone = telefone.replaceAll("\\s", "");
+
+        boolean valido = false;
+
+        if (telefone.length() < 10) {
+            valido = true;
+        }
+        if (telefone.substring(telefone.length()).matches("[0-9]*")) {
+            valido = true;
+        }
+        return valido;
     }
 }

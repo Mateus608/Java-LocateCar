@@ -1,6 +1,7 @@
 package br.com.ui;
 
-import br.com.list.ListaPessoas;
+import br.com.list.ListaPessoaFis;
+import br.com.list.ListaPessoaJur;
 import br.com.models.PessoaJuridica;
 import br.com.util.ConsoleUI;
 
@@ -58,12 +59,20 @@ public class CadastroPessoaJurUI extends BasicUI{
             }
             case 4: {
                 String contato = ConsoleUI.input("Informe o telefone para contato");
-                pessoa.setContato(contato);
+                if (!pessoa.validaTelefone(contato)) {
+                    pessoa.setContato(contato);
+                } else {
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Só pode conter números no telefone", "vermelho"), 2);
+                }
                 break;
             }
             case 5: {
                 String cnpj = ConsoleUI.input("Informe o CNPJ");
-                pessoa.setCnpj(cnpj);
+                if (!ListaPessoaFis.verificarCpf(cnpj) && pessoa.validaPessoa(cnpj)) {
+                    pessoa.setCnpj(cnpj);
+                } else {
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CPF digitado é inválido ou já existe!", "vermelho"), 2);
+                }
                 break;
             }
             case 6 : {
@@ -73,7 +82,7 @@ public class CadastroPessoaJurUI extends BasicUI{
                     break;
                 } else {
                     ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Cadastro salvo com sucesso!", "verde"),3);
-                    ListaPessoas.adicionarItem(pessoa);
+                    ListaPessoaJur.adicionarItem(pessoa);
                     return false;
                 }
             }

@@ -1,10 +1,14 @@
 package br.com.list;
 
+import br.com.enums.TipoVeiculo;
+import br.com.models.PessoaFisica;
+import br.com.models.PessoaJuridica;
 import br.com.models.Veiculo;
 import br.com.util.ConsoleUI;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class ListaEncadeada<T> implements Iterable<T> {
     private Celula<T> primeiro;
@@ -47,7 +51,7 @@ public class ListaEncadeada<T> implements Iterable<T> {
         }
     }
 
-    public void excluirItem(String index) {
+    public void excluirItem(String index, int identificador) {
         if (this.tamanho == 0) {
             return;
         }
@@ -56,18 +60,63 @@ public class ListaEncadeada<T> implements Iterable<T> {
         Celula<T> celulaAnterior = null;
 
         while (celulaAtual != null) {
-            if (((Veiculo)celulaAtual.getDado()).getPlaca().equals(index)) {
-                if (celulaAnterior == null) {
-                    this.primeiro = this.primeiro.getProximo();
-                } else {
-                    celulaAnterior.setProximo(celulaAtual.getProximo());
+            if (identificador == 1) {
+                if (((Veiculo) celulaAtual.getDado()).getPlaca().equals(index)) {
+                    if (celulaAnterior == null) {
+                        this.primeiro = this.primeiro.getProximo();
+                    } else {
+                        celulaAnterior.setProximo(celulaAtual.getProximo());
+                    }
+                    this.tamanho--;
+                    return;
                 }
-                this.tamanho--;
-                return;
+            } else if (identificador == 2) {
+                if (((PessoaFisica) celulaAtual.getDado()).getCpf().equals(index)) {
+                    if (celulaAnterior == null) {
+                        this.primeiro = this.primeiro.getProximo();
+                    } else {
+                        celulaAnterior.setProximo(celulaAtual.getProximo());
+                    }
+                    this.tamanho--;
+                    return;
+                }
+            } else if (identificador == 3) {
+                if (((PessoaJuridica) celulaAtual.getDado()).getCnpj().equals(index)) {
+                    if (celulaAnterior == null) {
+                        this.primeiro = this.primeiro.getProximo();
+                    } else {
+                        celulaAnterior.setProximo(celulaAtual.getProximo());
+                    }
+                    this.tamanho--;
+                    return;
+                }
             }
+
             celulaAnterior = celulaAtual;
             celulaAtual = celulaAtual.getProximo();
         }
+    }
+
+    public boolean verificarItem(String index, int identificador) {
+        Celula<T> celulaAtual = this.primeiro;
+
+        while (celulaAtual != null) {
+            if(identificador == 1) {
+                if (((Veiculo) celulaAtual.getDado()).getPlaca().equals(index)) {
+                    return true;
+                }
+            } else if (identificador == 2) {
+                if (((PessoaFisica) celulaAtual.getDado()).getCpf().equals(index)) {
+                    return true;
+                }
+            } else if (identificador == 3) {
+                if (((PessoaJuridica) celulaAtual.getDado()).getCnpj().equals(index)) {
+                    return true;
+                }
+            }
+            celulaAtual = celulaAtual.getProximo();
+        }
+        return false;
     }
 
 

@@ -1,6 +1,7 @@
 package br.com.ui;
 
-import br.com.list.ListaPessoas;
+import br.com.list.ListaPessoaFis;
+import br.com.list.ListaPessoaJur;
 import br.com.models.PessoaFisica;
 import br.com.models.PessoaJuridica;
 import br.com.util.ConsoleUI;
@@ -15,8 +16,8 @@ public class ListaPessoasUI extends BasicUI{
         pessoa1.setSobrenome("Milane");
         pessoa1.setEndereco("Rua teste, 21");
         pessoa1.setContato("1999999999");
-        pessoa1.setCpf("555");
-        ListaPessoas.adicionarItem(pessoa1);
+        pessoa1.setCpf("55512332102");
+        ListaPessoaFis.adicionarItem(pessoa1);
 
         PessoaJuridica pessoa2 = new PessoaJuridica();
         pessoa2.setNome("Sistemas Ltda");
@@ -24,10 +25,11 @@ public class ListaPessoasUI extends BasicUI{
         pessoa2.setRazaoSocial("Grup");
         pessoa2.setEndereco("Rua teste, 34");
         pessoa2.setContato("19998886545");
-        pessoa2.setCnpj("100");
-        ListaPessoas.adicionarItem(pessoa2);
+        pessoa2.setCnpj("112233445566");
+        ListaPessoaJur.adicionarItem(pessoa2);
 
-        ListaPessoas.mostrarLista();
+        ListaPessoaJur.mostrarLista();
+        ListaPessoaFis.mostrarLista();
         ConsoleUI.ln();
     }
 

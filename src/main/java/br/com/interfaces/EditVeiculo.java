@@ -5,5 +5,5 @@ import br.com.list.ListaEncadeada;
 import br.com.models.Veiculo;
 
 public interface EditVeiculo {
-    void editarItem(ListaEncadeada<Veiculo> lista, String placa, String novoModelo, TipoVeiculo novoTipoVeiculo);
+    void editarItem(ListaEncadeada<Veiculo> lista, String novaPlaca, String novoModelo, TipoVeiculo novoTipoVeiculo);
 }
