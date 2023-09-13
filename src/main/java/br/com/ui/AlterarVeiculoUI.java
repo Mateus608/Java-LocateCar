@@ -1,7 +1,7 @@
 package br.com.ui;
 
 import br.com.enums.TipoVeiculo;
-import br.com.list.ListaGlobal;
+import br.com.list.ListaVeiculos;
 import br.com.models.Veiculo;
 import br.com.util.ConsoleUI;
 
@@ -28,7 +28,7 @@ public class AlterarVeiculoUI extends BasicUI{
         switch (option) {
             case 0: {
                 String placa = ConsoleUI.input("Digite a placa do veiculo que deseja exluir");
-                if (veiculo.busca(ListaGlobal.lista, placa)) {
+                if (veiculo.busca(ListaVeiculos.lista, placa)) {
                     System.out.println(ConsoleUI.formatText("Veiculo encontrado... Prossiga com a edição", "amarelo"));
                     String modelo = ConsoleUI.input("Informe o novo modelo");
                     String tipoStr = ConsoleUI.input("Informe o novo tipo do veiculo: 1 > PEQUENO, 2 > MEDIO, 3 > SUV");
@@ -46,7 +46,7 @@ public class AlterarVeiculoUI extends BasicUI{
                     } else {
                         System.out.println("Valor digitado inválido!");
                     }
-                    veiculo.editarItem(ListaGlobal.lista, placa, modelo, tipo);
+                    veiculo.editarItem(ListaVeiculos.lista, placa, modelo, tipo);
                     break;
                 } else {
                     System.out.println(ConsoleUI.formatText("Veículo não encontrado!", "vermelho"));
@@ -56,9 +56,9 @@ public class AlterarVeiculoUI extends BasicUI{
             case 1: {
                 String index = ConsoleUI.input("Digite a placa do veículo que deseja excluir");
 
-                if (veiculo.busca(ListaGlobal.lista, index)) {
-                    ListaGlobal.lista.excluirItem(index);
-                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Veículo excluído com sucesso!", "verde"), 5);
+                if (veiculo.busca(ListaVeiculos.lista, index)) {
+                    ListaVeiculos.lista.excluirItem(index);
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Veículo excluído com sucesso!", "verde"), 3);
                 } else {
                     System.out.println(ConsoleUI.formatText("Veículo não encontrado!", "vermelho"));
                 }

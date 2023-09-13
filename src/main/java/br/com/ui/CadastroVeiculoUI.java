@@ -1,7 +1,7 @@
 package br.com.ui;
 
 import br.com.enums.TipoVeiculo;
-import br.com.list.ListaGlobal;
+import br.com.list.ListaVeiculos;
 import br.com.models.Veiculo;
 import br.com.util.ConsoleUI;
 
@@ -29,7 +29,7 @@ public class CadastroVeiculoUI extends BasicUI{
                 "Informar Modelo",
                 "Informar Tipo do Veiculo",
                 "Salvar Alterações",
-                "Sair");
+                "Cancelar");
         switch (option) {
             case 0: {
                 String placa = ConsoleUI.input("Informe a placa do veiculo");
@@ -57,11 +57,11 @@ public class CadastroVeiculoUI extends BasicUI{
             }
             case 3: {
                 if (veiculo.getModelo() == null || veiculo.getPlaca() == null || veiculo.getTipoVeiculo() == null) {
-                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Ainda existem campos vazios", "Amarelo"),3);
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Ainda existem campos vazios", "Amarelo"),2);
                     break;
                 } else {
-                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Cadastro salvo com sucesso!", "verde"),5);
-                    ListaGlobal.adicionarItem(veiculo);
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Cadastro salvo com sucesso!", "verde"),3);
+                    ListaVeiculos.adicionarItem(veiculo);
                     return false;
                 }
             }

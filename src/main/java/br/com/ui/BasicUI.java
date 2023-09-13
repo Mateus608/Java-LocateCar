@@ -1,8 +1,6 @@
 package br.com.ui;
 
 import br.com.list.ListaEncadeada;
-import br.com.list.ListaGlobal;
-import br.com.util.ConsoleUI;
 
 public abstract class BasicUI {
 

@@ -3,12 +3,10 @@ package br.com.models;
 import br.com.enums.TipoVeiculo;
 import br.com.interfaces.EditVeiculo;
 import br.com.interfaces.Pesquisar;
-import br.com.list.Celula;
 import br.com.list.ListaEncadeada;
-import br.com.list.ListaGlobal;
 import br.com.util.ConsoleUI;
 
-public class Veiculo implements EditVeiculo, Pesquisar {
+public class Veiculo implements EditVeiculo, Pesquisar<Veiculo> {
 
     private String placa;
     private String modelo;

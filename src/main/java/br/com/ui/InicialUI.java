@@ -1,8 +1,9 @@
 package br.com.ui;
 
 import br.com.enums.TipoVeiculo;
-import br.com.list.ListaEncadeada;
-import br.com.list.ListaGlobal;
+import br.com.list.ListaVeiculos;
+import br.com.models.PessoaFisica;
+import br.com.models.PessoaJuridica;
 import br.com.models.Veiculo;
 import br.com.util.ConsoleUI;
 
@@ -11,7 +12,14 @@ public class InicialUI extends BasicUI{
     public void superiorTela() {
 
         ConsoleUI.adicionarTitulo("Locate Car");
-        ListaGlobal.mostrarLista();
+
+        Veiculo veiculo = new Veiculo();
+        veiculo.setPlaca("ABC123");
+        veiculo.setModelo("Celta");
+        veiculo.setTipoVeiculo(TipoVeiculo.PEQUENO);
+        ListaVeiculos.adicionarItem(veiculo);
+
+        ListaVeiculos.mostrarLista();
         ConsoleUI.ln();
     }
     public boolean menuOpcao() {
@@ -22,8 +30,8 @@ public class InicialUI extends BasicUI{
                 "Editar Veiculo",
                 "Cadastrar Cliente [Pessoa Fisica]",
                 "Cadastrar Cliente [Pessoa Juridica]",
-                "Alugar Veiculo",
                 "Listar Clientes",
+                "Alugar Veiculo",
                 "Pesquisar",
                 "Sair");
         switch (option) {
@@ -40,17 +48,19 @@ public class InicialUI extends BasicUI{
                 break;
             }
             case 2: {
-                BasicUI ui = new CadastroPessoaFisUI();
+                PessoaFisica pessoa = new PessoaFisica();
+                CadastroPessoaFisUI ui = new CadastroPessoaFisUI(pessoa);
                 ui.show();
                 break;
             }
             case 3: {
-                BasicUI ui = new CadastroPessoaFisUI();
+                PessoaJuridica pessoa = new PessoaJuridica();
+                CadastroPessoaJurUI ui = new CadastroPessoaJurUI(pessoa);
                 ui.show();
                 break;
             }
             case 4: {
-                BasicUI ui = new CadastroPessoaJurUI();
+                ListaPessoasUI ui = new ListaPessoasUI();
                 ui.show();
                 break;
             }

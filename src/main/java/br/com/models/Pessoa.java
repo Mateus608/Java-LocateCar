@@ -1,18 +1,10 @@
 package br.com.models;
 
 public class Pessoa {
-    protected String idPessoa;
     protected String nome;
     protected String endereco;
     protected String contato;
 
-    public String getIdPessoa() {
-        return idPessoa;
-    }
-
-    public void setIdPessoa(String idPessoa) {
-        this.idPessoa = idPessoa;
-    }
 
     public String getNome() {
         return nome;

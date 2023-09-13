@@ -1,6 +1,6 @@
 package br.com.list;
 
-public class ListaGlobal {
+public class ListaPessoas {
     public static ListaEncadeada lista = new ListaEncadeada();
 
     public static ListaEncadeada getLista() {
