@@ -34,7 +34,8 @@ public class InicialUI extends BasicUI{
                 break;
             }
             case 1: {
-                BasicUI ui = new CadastroPessoaFisUI();
+                Veiculo veiculo = new Veiculo();
+                AlterarVeiculoUI ui = new AlterarVeiculoUI(veiculo);
                 ui.show();
                 break;
             }

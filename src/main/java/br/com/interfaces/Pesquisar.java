@@ -1,7 +1,9 @@
 package br.com.interfaces;
 
-import java.util.List;
+import br.com.enums.TipoVeiculo;
+import br.com.list.ListaEncadeada;
+import br.com.models.Veiculo;
 
-public interface Pesquisar<T> {
-    List<T> pesquisarNome(String nome);
+public interface Pesquisar {
+    boolean busca(ListaEncadeada<Veiculo> lista, String index);
 }

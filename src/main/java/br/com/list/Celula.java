@@ -1,27 +1,27 @@
 package br.com.list;
 
-public class Celula {
-    private Celula proximo;
-    private Object dado;
+public class Celula<T> {
+    private Celula<T> proximo;
+    private T dado;
 
-    public Celula(Celula proximo, Object dado) {
+    public Celula(Celula<T> proximo, T dado) {
         this.proximo = proximo;
         this.dado = dado;
     }
 
-    public Celula(Object dado){
+    public Celula(T dado) {
         this.dado = dado;
     }
 
-    public Celula getProximo() {
+    public Celula<T> getProximo() {
         return proximo;
     }
 
-    public void setProximo(Celula proximo) {
+    public void setProximo(Celula<T> proximo) {
         this.proximo = proximo;
     }
 
-    public Object getDado() {
+    public T getDado() {
         return dado;
     }
 }
