@@ -18,4 +18,12 @@ public class ListaAluguel {
 
         lista.excluirItem(index, 2);
     }
+
+    public static boolean verificarVeiculo(String placa) {
+        if (!lista.verificarItem(placa, 4)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

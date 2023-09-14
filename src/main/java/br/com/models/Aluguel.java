@@ -8,7 +8,7 @@ import br.com.interfaces.Pagamento;
 import java.time.LocalDateTime;
 
 public class Aluguel implements Pagamento {
-    private LocalDateTime dateTime;
+    private String dateTime;
     private String placaVeiculo;
     private String documentoPessoa;
     private Double valorAluguel;
@@ -59,11 +59,11 @@ public class Aluguel implements Pagamento {
         this.valorDesconto = valorDesconto;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
