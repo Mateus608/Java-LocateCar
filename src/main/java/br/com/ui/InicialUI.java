@@ -14,13 +14,6 @@ public class InicialUI extends BasicUI{
     public void superiorTela() {
 
         ConsoleUI.adicionarTitulo("Locate Car");
-
-        Veiculo veiculo = new Veiculo();
-        veiculo.setPlaca("ABC1230");
-        veiculo.setModelo("Celta");
-        veiculo.setTipoVeiculo(TipoVeiculo.PEQUENO);
-        ListaVeiculos.adicionarItem(veiculo);
-
         ListaVeiculos.mostrarLista();
         ConsoleUI.ln();
     }

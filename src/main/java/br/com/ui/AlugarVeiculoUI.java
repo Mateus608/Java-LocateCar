@@ -4,11 +4,14 @@ import br.com.enums.TipoMovimentacao;
 import br.com.enums.TipoPessoa;
 import br.com.enums.TipoVeiculo;
 import br.com.list.ListaAluguel;
+import br.com.list.ListaPessoaFis;
+import br.com.list.ListaPessoaJur;
 import br.com.list.ListaVeiculos;
 import br.com.models.Aluguel;
 import br.com.util.ConsoleUI;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AlugarVeiculoUI extends BasicUI{
 
@@ -47,7 +50,7 @@ public class AlugarVeiculoUI extends BasicUI{
                 if (ListaVeiculos.verificarPlaca(placa)) {
                     aluguel.setPlacaVeiculo(placa);
                 } else {
-                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Placa digitada é inválida ou não existe!", "vermelho"), 2);
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Placa digitada é inválida ou veiculo não disponivel!", "vermelho"), 2);
                 }
                 break;
             } case 1 : {
@@ -79,12 +82,24 @@ public class AlugarVeiculoUI extends BasicUI{
                 }
                 break;
             } case 3 : {
-                if (aluguel.getTipoPessoa().equals(TipoPessoa.FISICA)) {
-                    String cpf = ConsoleUI.input("Informe o CPF do cliente");
-                    aluguel.setDocumentoPessoa(cpf);
-                } else if (aluguel.getTipoPessoa().equals(TipoPessoa.JURIDICA)) {
-                    String cnpj = ConsoleUI.input("Informe o CNPJ do cliente");
-                    aluguel.setDocumentoPessoa(cnpj);
+                if (aluguel.getTipoPessoa() != null) {
+                    if (aluguel.getTipoPessoa().equals(TipoPessoa.FISICA)) {
+                        String cpf = ConsoleUI.input("Informe o CPF do cliente");
+                        if (ListaPessoaFis.verificarCpf(cpf)) {
+                            aluguel.setDocumentoPessoa(cpf);
+                        } else {
+                            ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CPF digitado é inválido ou não está cadastrado!", "vermelho"), 2);
+                        }
+                    } else if (aluguel.getTipoPessoa().equals(TipoPessoa.JURIDICA)) {
+                        String cnpj = ConsoleUI.input("Informe o CNPJ do cliente");
+                        if (ListaPessoaJur.verificarCnpj(cnpj)) {
+                            aluguel.setDocumentoPessoa(cnpj);
+                        } else {
+                            ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("CNPJ digitado é inválido ou não está cadastrado!", "vermelho"), 2);
+                        }
+                    }
+                } else {
+                    ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Você aida não definil o tipo pessoa", "amarelo"),2);
                 }
                 break;
             } case 4 : {
@@ -93,7 +108,17 @@ public class AlugarVeiculoUI extends BasicUI{
                     break;
                 } else {
                     ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Aluguel realizado com sucesso!", "verde"),3);
-                    aluguel.setDateTime(LocalDateTime.now());
+
+
+                    LocalDateTime agora = LocalDateTime.parse(
+                            LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")),
+                            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+                    );
+
+                    String agoraFormatado = agora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+
+                    aluguel.setDateTime(agoraFormatado);
+
                     aluguel.setTipoMovimentacao(TipoMovimentacao.RETIRADA);
                     ListaAluguel.adicionarItem(aluguel);
                     return false;

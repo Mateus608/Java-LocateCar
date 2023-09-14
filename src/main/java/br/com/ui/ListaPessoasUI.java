@@ -9,24 +9,7 @@ import br.com.util.ConsoleUI;
 public class ListaPessoasUI extends BasicUI{
     @Override
     public void superiorTela() {
-        ConsoleUI.adicionarTitulo("Alterar Clientes");
-
-        PessoaFisica pessoa1 = new PessoaFisica();
-        pessoa1.setNome("Mateus");
-        pessoa1.setSobrenome("Milane");
-        pessoa1.setEndereco("Rua teste, 21");
-        pessoa1.setContato("1999999999");
-        pessoa1.setCpf("55512332102");
-        ListaPessoaFis.adicionarItem(pessoa1);
-
-        PessoaJuridica pessoa2 = new PessoaJuridica();
-        pessoa2.setNome("Sistemas Ltda");
-        pessoa2.setNomeFantasia("Sistemas");
-        pessoa2.setRazaoSocial("Grup");
-        pessoa2.setEndereco("Rua teste, 34");
-        pessoa2.setContato("19998886545");
-        pessoa2.setCnpj("112233445566");
-        ListaPessoaJur.adicionarItem(pessoa2);
+        ConsoleUI.adicionarTitulo("Lista Clientes");
 
         ListaPessoaJur.mostrarLista();
         ListaPessoaFis.mostrarLista();

@@ -1,6 +1,7 @@
 package br.com.list;
 
 import br.com.enums.TipoVeiculo;
+import br.com.models.Aluguel;
 import br.com.models.PessoaFisica;
 import br.com.models.PessoaJuridica;
 import br.com.models.Veiculo;
@@ -90,8 +91,17 @@ public class ListaEncadeada<T> implements Iterable<T> {
                     this.tamanho--;
                     return;
                 }
+            } else if (identificador == 4) {
+                if (((Aluguel) celulaAtual.getDado()).getPlacaVeiculo().equals(index)) {
+                    if (celulaAnterior == null) {
+                        this.primeiro = this.primeiro.getProximo();
+                    } else {
+                        celulaAnterior.setProximo(celulaAtual.getProximo());
+                    }
+                    this.tamanho--;
+                    return;
+                }
             }
-
             celulaAnterior = celulaAtual;
             celulaAtual = celulaAtual.getProximo();
         }
