@@ -47,7 +47,7 @@ public class AlugarVeiculoUI extends BasicUI{
         switch (option) {
             case 0: {
                 String placa = ConsoleUI.input("Informe a placa do veiculo");
-                if (ListaVeiculos.verificarPlaca(placa)) {
+                if (ListaVeiculos.verificarPlaca(placa) && !ListaAluguel.verificarVeiculo(placa)) {
                     aluguel.setPlacaVeiculo(placa);
                 } else {
                     ConsoleUI.mensagemTemporizada(ConsoleUI.formatText("Placa digitada é inválida ou veiculo não disponivel!", "vermelho"), 2);

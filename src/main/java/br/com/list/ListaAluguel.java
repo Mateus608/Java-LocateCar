@@ -16,7 +16,7 @@ public class ListaAluguel {
     }
     public static void excluirItemLista(String index) {
 
-        lista.excluirItem(index, 2);
+        lista.excluirItem(index, 4);
     }
 
     public static boolean verificarVeiculo(String placa) {

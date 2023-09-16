@@ -123,6 +123,10 @@ public class ListaEncadeada<T> implements Iterable<T> {
                 if (((PessoaJuridica) celulaAtual.getDado()).getCnpj().equals(index)) {
                     return true;
                 }
+            } else if (identificador == 4) {
+                if (((Aluguel) celulaAtual.getDado()).getPlacaVeiculo().equals(index)) {
+                    return true;
+                }
             }
             celulaAtual = celulaAtual.getProximo();
         }
