@@ -4,10 +4,12 @@ import br.com.enums.TipoMovimentacao;
 import br.com.enums.TipoPessoa;
 import br.com.enums.TipoVeiculo;
 import br.com.interfaces.Pagamento;
+import br.com.interfaces.Pesquisar;
+import br.com.list.ListaEncadeada;
 
 import java.time.LocalDateTime;
 
-public class Aluguel implements Pagamento {
+public class Aluguel implements Pagamento, Pesquisar<Aluguel> {
     private String dateTime;
     private String placaVeiculo;
     private String documentoPessoa;
@@ -20,10 +22,10 @@ public class Aluguel implements Pagamento {
     @Override
     public String toString() {
         return "Data/Horário: " + dateTime +
-                "| Placa do Veiculo: " + placaVeiculo +
-                "| Cliente: " + documentoPessoa +
-                "| Valor: " + valorAluguel +
-                "| Movimentação: " + tipoMovimentacao;
+                " | Placa do Veiculo: " + placaVeiculo +
+                " | Cliente: " + documentoPessoa +
+                " | Valor: " + valorAluguel +
+                " | Movimentação: " + tipoMovimentacao;
     }
 
     public void setPlacaVeiculo(String placaVeiculo) {
@@ -112,5 +114,15 @@ public class Aluguel implements Pagamento {
             valorDesconto = 0.10;
         }
 
+    }
+
+    @Override
+    public boolean busca(ListaEncadeada<Aluguel> lista, String index) {
+        for (Aluguel aluguel : lista) {
+            if (aluguel.getPlacaVeiculo().equals(index)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

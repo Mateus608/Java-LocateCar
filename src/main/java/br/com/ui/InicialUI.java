@@ -67,7 +67,8 @@ public class InicialUI extends BasicUI{
                 break;
             }
             case 6 : {
-                ListaAluguelUI ui = new ListaAluguelUI();
+                Aluguel aluguel = new Aluguel();
+                ListaAluguelUI ui = new ListaAluguelUI(aluguel);
                 ui.show();
                 break;
             }

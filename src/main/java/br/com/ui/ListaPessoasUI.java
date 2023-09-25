@@ -9,9 +9,10 @@ import br.com.util.ConsoleUI;
 public class ListaPessoasUI extends BasicUI{
     @Override
     public void superiorTela() {
-        ConsoleUI.adicionarTitulo("Lista Clientes");
-
+        ConsoleUI.adicionarTitulo("Lista Clientes [Pessoa Juridica]");
         ListaPessoaJur.mostrarLista();
+        ConsoleUI.ln();
+        ConsoleUI.adicionarTitulo("Lista Clientes [Pessoa Fisica]");
         ListaPessoaFis.mostrarLista();
         ConsoleUI.ln();
     }
